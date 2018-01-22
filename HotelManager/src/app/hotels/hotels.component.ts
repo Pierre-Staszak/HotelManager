@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {forEach} from "@angular/router/src/utils/collection";
+import { Hotel} from '../hotel';
 
 @Component({
   selector: 'app-hotels',
@@ -11,6 +11,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 export class HotelsComponent implements OnInit {
 
   results: string[];
+  selectedHotel: Hotel;
 
   constructor(private http: HttpClient) {
     this.getJSON().subscribe(data => {
@@ -25,6 +26,10 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onSelect(hotel: Hotel): void {
+    this.selectedHotel = hotel;
   }
 
 }

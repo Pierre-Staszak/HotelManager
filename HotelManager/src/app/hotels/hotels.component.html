@@ -1,5 +1,22 @@
-<ul>
-  <li *ngFor="let hotel of results">
-    {{hotel.name}}
-  </li>
-</ul>
+<div class="row">
+  <div class="column">
+    <ul class="hotels">
+      <li *ngFor="let hotel of results"
+          [class.selected]="hotel === selectedHotel"
+          (click)="onSelect(hotel)">
+        {{hotel.name}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="column" *ngIf="selectedHotel">
+
+    <h2>{{ selectedHotel.name}} Details</h2>
+
+    <div *ngIf="selectedHotel.is_available == true">Available</div>
+    <div *ngIf="selectedHotel.is_available == false">This hotel is full</div>
+
+    <div>{{selectedHotel.distance_to_city}} miles to city</div>
+    <div>{{selectedHotel.short_description}}</div>
+  </div>
+</div>
