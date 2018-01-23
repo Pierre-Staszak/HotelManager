@@ -6,18 +6,21 @@ import { HotelsComponent } from './hotels/hotels.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
+import {HotelService} from "./hotel.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HotelsComponent
+    HotelsComponent,
+    HotelDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ HotelService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,20 @@
 <div class="row">
   <div class="column">
-    <ul class="hotels">
-      <li *ngFor="let hotel of results"
+    <ul class="hotels" *ngIf="myObs | async as hotels;else spinner">
+      <li *ngFor="let hotel of hotels"
           [class.selected]="hotel === selectedHotel"
           (click)="onSelect(hotel)">
         {{hotel.name}}
       </li>
+      <ng-template #spinner>
+        <img src="http://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif"/>
+      </ng-template>
     </ul>
   </div>
 
-  <div class="column" *ngIf="selectedHotel">
-
-    <h2>{{ selectedHotel.name}} Details</h2>
-
-    <div *ngIf="selectedHotel.is_available == true">Available</div>
-    <div *ngIf="selectedHotel.is_available == false">This hotel is full</div>
-
-    <div>{{selectedHotel.distance_to_city}} miles to city</div>
-    <div>{{selectedHotel.short_description}}</div>
+  <div *ngIf="selectedHotel; else prompt" class="column">
+    <button (click)="dismissHotel()">Dismiss</button>
+    <app-hotel-detail [hotel]="selectedHotel"></app-hotel-detail>
   </div>
+  <ng-template #prompt>Choose a hotel from the list</ng-template>
 </div>

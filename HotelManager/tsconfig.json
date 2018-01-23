@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "target": "es5",
     "strict": true,
+    "strictFunctionTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

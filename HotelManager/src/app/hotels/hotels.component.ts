@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
 import { Hotel} from '../hotel';
+import { HotelService } from '../hotel.service';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-hotels',
@@ -10,26 +10,26 @@ import { Hotel} from '../hotel';
 })
 export class HotelsComponent implements OnInit {
 
-  results: string[];
   selectedHotel: Hotel;
 
-  constructor(private http: HttpClient) {
-    this.getJSON().subscribe(data => {
-      console.log(data);
-      this.results = data['results'];
-    });
+  myObs: Observable<Hotel[]>;
+
+  constructor(private hotelService: HotelService) {}
+
+  ngOnInit() {
+    this.myObs = this.hotelService.getHotels();
   }
 
-  public getJSON(): Observable<any> {
-    return this.http.get("./assets/accomodations.json")
-  }
-
-  ngOnInit(): void {
-
+  dismissHotel(){
+    delete this.selectedHotel;
   }
 
   onSelect(hotel: Hotel): void {
-    this.selectedHotel = hotel;
+    if (this.selectedHotel == hotel){
+      delete this.selectedHotel;
+    }
+    else {
+      this.selectedHotel = hotel;
+    }
   }
-
 }

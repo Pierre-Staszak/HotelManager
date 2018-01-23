@@ -1,0 +1,14 @@
+
+  <h2>{{hotel.name}} Details</h2>
+
+  <div *ngIf="hotel.is_available == true">Available</div>
+  <div *ngIf="hotel.is_available == false">This hotel is full</div>
+
+  <p>{{hotel.description.phone}}</p>
+
+  <p>{{hotel.description.address}}</p>
+  <p>{{hotel.distance_to_city}} miles to city</p>
+
+  <p>{{hotel.description.short_description}}</p>
+
+  <!--<img [src]="hotel.descriptions[0].pictures[0].url"></img>-->
