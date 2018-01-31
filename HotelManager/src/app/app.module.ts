@@ -8,17 +8,23 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import {HotelService} from "./hotel.service";
+import { AppRoutingModule } from './/app-routing.module';
+
+import { HotelFilterPipe } from './hotel-filter.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HotelsComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    HotelFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ HotelService ],
   bootstrap: [AppComponent]

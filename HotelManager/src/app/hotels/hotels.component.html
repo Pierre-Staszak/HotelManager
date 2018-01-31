@@ -1,7 +1,9 @@
+<input type="text" [(ngModel)]="queryString" id="search" placeholder="Search to type">
+
 <div class="row">
   <div class="column">
     <ul class="hotels" *ngIf="myObs | async as hotels;else spinner">
-      <li *ngFor="let hotel of hotels"
+      <li *ngFor="let hotel of hotels | HotelFilterPipe: queryString"
           [class.selected]="hotel === selectedHotel"
           (click)="onSelect(hotel)">
         {{hotel.name}}
