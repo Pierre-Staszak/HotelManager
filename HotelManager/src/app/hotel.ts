@@ -6,4 +6,9 @@ export interface Hotel {
   is_available: boolean;
 }
 
-export interface HotelDescription {picture_url: string, short_description: string, address: string, phone: string}
+export interface HotelDescription {
+  picture_url: string,
+  short_description: string,
+  address: string,
+  phone: string
+}
