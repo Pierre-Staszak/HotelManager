@@ -5,8 +5,6 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import {Hotel, HotelDescription} from "./hotel";
 
-import * as t from 'io-ts';
-
 export const toHotelDescription = (x: any):HotelDescription => {
   console.log(x);
   const desc = x.descriptions[0];
@@ -27,14 +25,6 @@ export const toHotelList = (x: Array<any>):Hotel[] => {
   return x.filter(filterHotel).map(toHotel);
 }
 
-export const HotelInterface = t.interface({
-  id: t.number,
-  name: t.string,
-  distance_to_city: t.number,
-  is_available: t.boolean,
-  descriptions: HotelDescription
-})
-
 @Injectable()
 export class HotelService {
 
@@ -42,8 +32,8 @@ export class HotelService {
   }
 
   public getHotels(): Observable<Hotel[]> {
-    return t.validate(this.http.get("./assets/accomodations.json"), HotelInterface).fold((err: any) => [], (res: HotelInterface) => toHotelList(res))
-    //return this.http.get("./assets/accomodations.json").map((x:any) => toHotelList(x["results"]));
+    /// /return t.validate(this.http.get("./assets/accomodations.json"), HotelInterface).fold((err: any) => [], (res: HotelInterface) => toHotelList(res))
+    return this.http.get("./assets/accomodations.json").map((x:any) => toHotelList(x["results"]));
   }
 
 }
